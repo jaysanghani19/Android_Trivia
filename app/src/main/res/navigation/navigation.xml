@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/titleFragment2">
+    <fragment
+        android:id="@+id/gameFragment3"
+        android:name="com.example.androidtrivia.GameFragment"
+        android:label="GameFragment" >
+        <action
+            android:id="@+id/action_gameFragment3_to_gameOverFragment4"
+            app:destination="@id/gameOverFragment4"
+            app:popUpTo="@id/gameFragment3"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_gameFragment3_to_gameWonFragment2"
+            app:destination="@id/gameWonFragment2"
+            app:popUpTo="@id/gameFragment3"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameOverFragment4"
+        android:name="com.example.androidtrivia.GameOverFragment"
+        android:label="GameOverFragment" >
+        <action
+            android:id="@+id/action_gameOverFragment4_to_gameFragment3"
+            app:destination="@id/gameFragment3"
+            app:popUpTo="@id/titleFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/gameWonFragment2"
+        android:name="com.example.androidtrivia.GameWonFragment"
+        android:label="GameWonFragment" >
+        <action
+            android:id="@+id/action_gameWonFragment2_to_gameFragment3"
+            app:destination="@id/gameFragment3"
+            app:popUpTo="@id/titleFragment2"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.androidtrivia.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/rulesFragment"
+        android:name="com.example.androidtrivia.RulesFragment"
+        android:label="fragment_rules"
+        tools:layout="@layout/fragment_rules" />
+    <fragment
+        android:id="@+id/titleFragment2"
+        android:name="com.example.androidtrivia.titleFragment"
+        android:label="titleFragment" >
+        <action
+            android:id="@+id/action_titleFragment2_to_rulesFragment"
+            app:destination="@id/rulesFragment" />
+        <action
+            android:id="@+id/action_titleFragment2_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_titleFragment2_to_gameFragment3"
+            app:destination="@id/gameFragment3" />
+    </fragment>
+</navigation>
