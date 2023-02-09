@@ -114,14 +114,24 @@ class GameFragment : Fragment() {
                     } else {
                         // We've won!  Navigate to the gameWonFragment.
                         binding.submitButton.setOnClickListener(
-                            Navigation.createNavigateOnClickListener(R.id.action_gameFragment3_to_gameWonFragment2)
+                            Navigation.createNavigateOnClickListener(
+                                GameFragmentDirections.actionGameFragment3ToGameWonFragment2(
+                                    numQuestions,
+                                    questionIndex
+                                )
+                            )
                         )
                     }
                 } else {
                     // Game over! A wrong answer sends us to the gameOverFragment.
 
                     binding.submitButton.setOnClickListener(
-                        Navigation.createNavigateOnClickListener(R.id.action_gameFragment3_to_gameOverFragment4)
+                        Navigation.createNavigateOnClickListener(
+                            GameFragmentDirections.actionGameFragment3ToGameOverFragment4(
+                                numQuestions,
+                                questionIndex
+                            )
+                        )
 
                     )
                 }

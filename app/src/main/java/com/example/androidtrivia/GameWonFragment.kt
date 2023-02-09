@@ -1,14 +1,12 @@
 package com.example.androidtrivia
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
-//import com.example.android.navigation.databinding.FragmentGameWonBinding
 import com.example.androidtrivia.databinding.FragmentGameWonBinding
 
 
@@ -22,8 +20,50 @@ class GameWonFragment : Fragment() {
             inflater, R.layout.fragment_game_won, container, false
         )
 
-        binding.nextMatchButton.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_gameWonFragment2_to_gameFragment3))
-//        binding.nextMatchButton.setOnClickListener { view :View -> this.findNavController().navigate(R.id.action_gameWonFragment2_to_gameFragment3) }
-            return binding.root
+//      setting up that visibility of optionmenu to True
+        setHasOptionsMenu(true)
+
+//        Navigating to titleFragment
+        binding.nextMatchButton.setOnClickListener(
+            Navigation.createNavigateOnClickListener(
+                GameWonFragmentDirections.actionGameWonFragment2ToGameFragment3()
+            )
+        )
+        return binding.root
+    }
+
+    //  making and returning intent for sharing
+    private fun getShareIntent(): Intent {
+        var args = GameWonFragmentArgs.fromBundle(requireArguments())
+        return ShareCompat.IntentBuilder.from(requireActivity()).setText(
+            getString(
+                R.string.share_success_text,
+                args.numCorrect,
+                args.numAnswered
+            )
+        ).intent
+    }
+
+    //  using function we're sharing the intent that we've created
+    private fun shareIntent() {
+        startActivity(getShareIntent())
+    }
+
+    //  enabling the showing optionmenu
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.winner_menu, menu)
+
+        if (null == getShareIntent().resolveActivity(requireActivity().packageManager)) {
+            menu.findItem(R.id.share).isVisible = false
+        }
+    }
+
+    //  selecting the which option to show
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.share -> shareIntent()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
