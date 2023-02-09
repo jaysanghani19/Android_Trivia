@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     // to get back from drawermenu or from other menu
-    // setting up both navcontroller and appbarconfiguration
+    // setting up for both navcontroller and appbarconfiguration
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.myNavigation)
 
