@@ -3,6 +3,7 @@ package com.example.androidtrivia
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -22,7 +23,6 @@ class GameWonFragment : Fragment() {
 
 //      setting up that visibility of optionmenu to True
         setHasOptionsMenu(true)
-
 //        Navigating to titleFragment
         binding.nextMatchButton.setOnClickListener(
             Navigation.createNavigateOnClickListener(
@@ -34,6 +34,8 @@ class GameWonFragment : Fragment() {
 
     //  making and returning intent for sharing
     private fun getShareIntent(): Intent {
+
+        // Argument Received From GameFragment
         var args = GameWonFragmentArgs.fromBundle(requireArguments())
         return ShareCompat.IntentBuilder.from(requireActivity()).setText(
             getString(
@@ -41,12 +43,17 @@ class GameWonFragment : Fragment() {
                 args.numCorrect,
                 args.numAnswered
             )
-        ).intent
+        ).setType("text/text").intent
     }
 
     //  using function we're sharing the intent that we've created
     private fun shareIntent() {
-        startActivity(getShareIntent())
+        try {
+            startActivity(getShareIntent())
+        }
+        catch (ex : android.content.ActivityNotFoundException){
+
+        }
     }
 
     //  enabling the showing optionmenu
@@ -54,9 +61,9 @@ class GameWonFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.winner_menu, menu)
 
-        if (null == getShareIntent().resolveActivity(requireActivity().packageManager)) {
-            menu.findItem(R.id.share).isVisible = false
-        }
+//        if (null == getShareIntent().resolveActivity(requireActivity().packageManager)) {
+//            menu.findItem(R.id.share).isVisible = false
+//        }
     }
 
     //  selecting the which option to show
