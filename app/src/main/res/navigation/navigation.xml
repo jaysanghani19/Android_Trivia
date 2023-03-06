@@ -11,11 +11,15 @@
         <action
             android:id="@+id/action_gameFragment3_to_gameOverFragment4"
             app:destination="@id/gameOverFragment4"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
             app:popUpTo="@id/gameFragment3"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_gameFragment3_to_gameWonFragment2"
             app:destination="@id/gameWonFragment2"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
             app:popUpTo="@id/gameFragment3"
             app:popUpToInclusive="true" />
     </fragment>
@@ -26,6 +30,10 @@
         <action
             android:id="@+id/action_gameOverFragment4_to_gameFragment3"
             app:destination="@id/titleFragment2"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/titleFragment2"
             app:popUpToInclusive="true" />
         <argument
@@ -42,6 +50,10 @@
         <action
             android:id="@+id/action_gameWonFragment2_to_gameFragment3"
             app:destination="@id/titleFragment2"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/titleFragment2"
             app:popUpToInclusive="true" />
         <argument
