@@ -48,6 +48,7 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.navView, navController)
     }
 
+    // Activating BackStack Navigation
     // to get back from drawermenu or from other menu
     // setting up for both navcontroller and appbarconfiguration
     override fun onSupportNavigateUp(): Boolean {
